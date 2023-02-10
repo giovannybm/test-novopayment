@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Test Novopayment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto está realizado con [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Herramientas Usadas
 
-In the project directory, you can run:
+```
+React
+SCSS
+ReactI18nNext
+```
 
-### `npm start`
+## Proceso realizado
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+En este proyecto se abordo el escenario donde se tenía que crear una vista a partir de un mockup y generar un menú multinivel que se generaba por medio de un endpoint.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+El punto del desarrollo del menú se basó en como lo abordó [Ant Desing](https://ant.design/components/menu) sin embargo se contruyó desde cero el componente.
 
-### `npm test`
+Para el abordaje del componente de navegación se tranformaron los datos entregados de la manera:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+```
+        "list": [
+            {
+                "card_list": [],
+                "pays_transfer": [
+                    {
+                        "between_cards": [],
+                        "banks": [],
+                        "credit_card": [
+                            {
+                                "visa": [],
+                                "master_card": []
+                            }
+                        ]
+                    }
+                ],
+                "support": [
+                    {
+                        "lock": [],
+                        "change_pass": []
+                    }
+                ],
+                "enterprises": []
+            }
+        ]
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+y se transformaron a 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+```
+        "list": [
+            {
+               "title": "card_list"
+            },
+            {
+                "title":"pays_transfer",
+                "children":[
+                    {
+                        "title":"between_cards",
+                    }
+                        "title", "banks":,
+                        "title":"credit_card"
+                        "children": [
+                            {
+                                "title":"visa",
+                                "title":"master_card"
+                            }
+                        ]
+                    }
+                ],
+           ...
+        ]
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ Para esto se creó una función recursiva en el componente  `Navbar` el cual es un HOC que contiene otros dos componentes `MenuItems` y `ItemDropdown` para renderizar el Schema resultante en una lista html.
+ 
+ `MenuItems` se encarga de renderizar los elementos que no contienen hijos
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`ItemDropdown` Renderiza lso elementos que tienen hizo para retornar un elementos desplegable
+```
+## Iniciar el proyecto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Clonar el proyecto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+git clone https://github.com/giovannybm/test-novopayment.git
+```
 
-## Learn More
+### Instalar dependencias
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Levantar servidor de desarrollo
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+npm start
+```
