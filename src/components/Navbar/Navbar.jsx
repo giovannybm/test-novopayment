@@ -38,7 +38,7 @@ const Navbar = (props) => {
 };
 
 const MenuItems = ({ item, depthLevel }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   let ref = useRef();
   const [dropdown, setDropdown] = useState(false);
 
