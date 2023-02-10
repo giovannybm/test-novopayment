@@ -1,16 +1,35 @@
+import { useEffect, createContext, useState } from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import { apiUI } from "../../httpApi/UI";
+import { appContext } from "../../hooks/context";
 import "./App.scss";
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <div className="content">
+  const [menuData, setMenuData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
+  const getMenu = async () => {
+    setLoading(true);
+    const result = await apiUI
+      .getMenu()
+      .then((response) => response.json())
+      .finally(() => setLoading(false));
+    setMenuData(result);
+  };
+
+  useEffect(() => {
+    getMenu();
+  }, []);
+
+  return (
+    <appContext.Provider value={{ loading, list: menuData }}>
+      <div className="App">
+        <Header />
+        <div className="content"></div>
+        <Footer />
       </div>
-      <Footer/>
-    </div>
+    </appContext.Provider>
   );
 }
 
