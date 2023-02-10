@@ -1,0 +1,17 @@
+@import "../../scss/colors.scss";
+@import "../../scss/mixins.scss";
+@import "../../scss/utils.scss";
+.footer {
+  background-color: $base-bg-color;
+  color: $base-font-color;
+  height: $footer-height;
+  @include center;
+  margin-top: auto;
+  border-top: 3px solid aqua;
+  box-sizing: border-box;
+}
+.footer_col {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}

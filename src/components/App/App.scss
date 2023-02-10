@@ -1,0 +1,9 @@
+@import "../../scss/utils.scss";
+.App {
+}
+
+.content{
+  min-height: calc(100vh - $header-height - $navbar-height - $footer-height );
+  background-image: url('../../assets/images/bg-content.jpg');
+  background-repeat: repeat-x;
+}

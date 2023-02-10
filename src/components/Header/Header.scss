@@ -1,0 +1,21 @@
+@import "../../scss/colors.scss";
+@import "../../scss/mixins.scss";
+@import "../../scss/utils.scss";
+.header {
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(140, 140, 140, 1);
+  box-shadow: 0px 1px 2px 0px rgba(140, 140, 140, 1);
+}
+.header > header {
+  height: $header-height;
+  background-color: $base-bg-color;
+  color: $base-font-color;
+  padding: 0 40px 0 40px;
+  @include center;
+}
+.userMenu {
+  font-weight: 500;
+}
+.userMenu::after {
+  content: url("../../assets/images/Arrow\ Down.svg");
+  margin-left: 10px;
+}
