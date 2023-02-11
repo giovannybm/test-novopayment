@@ -1,6 +1,9 @@
+@mixin center() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-@mixin center($horizontal: true, $vertical: true){
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+@mixin menuTransition {
+  transition: all 0.5s ease;
+}

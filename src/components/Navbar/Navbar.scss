@@ -1,11 +1,13 @@
 @import "../../scss/utils.scss";
 @import "../../scss/colors.scss";
+@import "../../scss/mixins.scss";
 .navbar {
   height: $navbar-height;
   width: auto;
   font-weight: 400;
   display: flex;
   align-items: center;
+  padding: 0 24px 0 24px;
 }
 
 .menu {
@@ -14,17 +16,20 @@
   flex-wrap: wrap;
   list-style: none;
   font-size: 17px;
+  cursor: pointer;
 }
 .menu > .menu-items {
-  margin: 0 10px 0 10px;
+  padding: 0 10px 0 10px;
+  margin: 0 2px 0 2px;
   height: 50px;
   display: flex;
   align-items: center;
   border-bottom: 3px solid transparent;
+  @include menuTransition;
 }
 .menu > .menu-items:hover {
   border-bottom: 3px solid $base-bg-color;
-  cursor:pointer;
+  @include menuTransition;
 }
 
 .menu-items {
@@ -35,7 +40,6 @@
   display: flex;
   align-items: center;
   padding: 0 5px 0 5px;
-  background-color: white;
 }
 
 .dropdown > .menu-items:not(:last-child) {
@@ -43,24 +47,29 @@
 }
 
 .dropdown {
-  padding-top: 3px;
   position: absolute;
   width: 100%;
   min-width: 200px;
   left: 0;
   right: auto;
-  top: 50px;
+  top: 53px;
   z-index: 9999;
   list-style: none;
-  display: none;
+  background-color: #fff;
+  visibility: hidden;
+  opacity: 0;
   font-size: 16px;
+  @include menuTransition;
+}
+.dropdown.show {
+  visibility: visible;
+  opacity: 1;
+  @include menuTransition;
 }
 .dropdown .dropdown-subMenu {
   position: absolute;
-  left: 100%;
-  top: -2px;
-  padding-left: 2px;
+  left: calc(100% + 1px);
+  top: 0px;
+  
 }
-.dropdown.show {
-  display: block;
-}
+
